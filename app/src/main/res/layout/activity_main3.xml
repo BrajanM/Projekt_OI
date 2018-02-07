@@ -1,25 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_dark"
-
+    android:gravity="center"
     android:orientation="vertical"
     tools:background="@android:color/black">
 
-    <TextView
-        android:id="@+id/txt_output2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:textColor="@android:color/white"
-        android:textSize="26dp"
-        android:textStyle="normal" />
 
 
 
-</RelativeLayout>
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@android:color/white"
+            android:singleLine="true"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:ellipsize="start"
+            android:hint="Podaj nazwę pliku"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:id="@+id/plik"
+            />
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:text="ZATWIERDŹ"
+            android:id="@+id/z"
+            android:textColor="@android:color/black"/>
+
+        <ImageButton
+            android:id="@+id/save"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@null"
+            android:layout_marginTop="50dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_insert_drive_file_black_24dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/wypisz"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"
+            android:textStyle="normal"/>
+
+
+
+
+</LinearLayout>

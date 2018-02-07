@@ -35,19 +35,12 @@
             android:layout_width="260dp"
             android:layout_height="50dp"
             android:backgroundTint="@android:color/darker_gray"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="370dp"
             android:id="@+id/Zapisz"
             android:layout_centerHorizontal="true"
             android:text="@string/Zapisz"
             android:textColor="@android:color/white"/>
-        <Button
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            android:backgroundTint="@android:color/darker_gray"
-            android:id="@+id/Odczyt"
-            android:layout_centerHorizontal="true"
-            android:text="@string/Odczyt"
-            android:textColor="@android:color/white"/>
+
 
     </LinearLayout>
 

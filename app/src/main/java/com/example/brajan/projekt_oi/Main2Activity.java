@@ -2,12 +2,22 @@ package com.example.brajan.projekt_oi;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Clock;
+import java.time.DayOfWeek;
+import java.time.MonthDay;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.io.OutputStreamWriter;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,13 +29,15 @@ import android.content.Context;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
 public class Main2Activity extends AppCompatActivity {
 
     private final int SPEECH_RECOGNITION_CODE = 1;
     private TextView txtOutput;
     private Button  zapisz;
-private Button odczytaj;
-    private String text="";
+    private Button odczytaj;
+    public String text="";
+   public String data="data";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +45,9 @@ private Button odczytaj;
         setContentView(R.layout.activity_main2);
         ButterKnife.bind(this);
 
+        SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat("yyyy-MM-dd'T'HH-mm-ss");
+        data= simpleDateFormat.format(new Date());
 
         startSpeechToText();
         txtOutput = (TextView) findViewById(R.id.txt_output);
@@ -41,8 +56,7 @@ private Button odczytaj;
         zapisz.setOnClickListener(onClick2);
 
 
-        odczytaj=(Button)findViewById(R.id.Odczyt);
-        odczytaj.setOnClickListener(onClick3);
+
 
     }
     private View.OnClickListener onClick2=new View.OnClickListener()
@@ -50,20 +64,22 @@ private Button odczytaj;
         @Override
         public void onClick(View view)
         {
-            Zapis();
+
+            Intent intent = new Intent(Main2Activity.this, Main3Activity.class);
+            intent.putExtra("data",data);
+
+            intent.putExtra("text",text);
+
+            Main2Activity.this.startActivity(intent);
+
+
 
         }
     };
-    private View.OnClickListener onClick3 = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(Main2Activity.this, Main3Activity.class);
-            Main2Activity.this.startActivity(intent);
-        }
-    };
+
     private void startSpeechToText() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"pl_PL");
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
@@ -97,20 +113,7 @@ private Button odczytaj;
             }
         }
     }
-    public void Zapis(){
-        try {
-            FileOutputStream fileout = openFileOutput("mojtekst.txt", MODE_PRIVATE);
-            OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
-            outputWriter.write(text.toString());
-            outputWriter.close();
-            Toast.makeText(getBaseContext(), "Zapis udany...", Toast.LENGTH_SHORT).show();
-        }catch (Exception e){
-            e.printStackTrace();
 
 
-        }
-
-
-    }
 
 }
